@@ -5,13 +5,19 @@
 
     public delegate decimal ComputeDiscountedPrice(decimal price);
 
-    public decimal Getfinalprice(Func<List <ProductModel> ,decimal > Calculatprice,ComputeDiscountedPrice discountedPrice)
+    public delegate void printDiscountValue(decimal totalPrice, decimal finalPrice);
+
+    public decimal Getfinalprice(Func<List<ProductModel>, decimal> Calculatprice,
+        ComputeDiscountedPrice discountedPrice,
+        printDiscountValue printDiscountValue)
     {
         decimal totoal = Calculatprice(Item);
 
-        return discountedPrice(totoal);
+        decimal discountedvalue = discountedPrice(totoal);
 
+        printDiscountValue(totoal , discountedvalue);
 
+        return discountedvalue;
     }
 
 }

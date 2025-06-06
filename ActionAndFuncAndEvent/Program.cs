@@ -8,25 +8,34 @@ normaluser.ShopingCart = fillShopingcart();
 goldenUser.ShopingCart = fillShopingcart();
 
 
-decimal normaluserprice = normaluser.ShopingCart.Getfinalprice(ComputTotalPrice,normaluser.GetDiscountedPrice);
-decimal goldenuserprice = goldenUser.ShopingCart.Getfinalprice(ComputTotalPrice, goldenUser.GetDiscountedPrice);
+decimal normaluserprice = normaluser.ShopingCart.Getfinalprice(ComputTotalPrice,
+normaluser.GetDiscountedPrice,
+(total, dis) => Console.WriteLine($"Your discount is : {total - dis}"));
 
 
-Console.WriteLine($"normal User :{normaluserprice :C2}");
+decimal goldenuserprice = goldenUser.ShopingCart.Getfinalprice(ComputTotalPrice,
+goldenUser.GetDiscountedPrice,
+(total, dis) => Console.WriteLine($"Your discount is : {total - dis}"));
+
+
+
+Console.WriteLine();
+
+Console.WriteLine($"normal User :{normaluserprice:C2}");
 Console.WriteLine();
 Console.WriteLine($"Golden User :{goldenuserprice:C2}");
 
 
 decimal ComputTotalPrice(List<ProductModel> model)
 {
-    return model.Sum(p=>p.price);
+    return model.Sum(p => p.price);
 }
 
 
 
 ShopingCartModel fillShopingcart()
 {
-     ShopingCartModel cart = new ShopingCartModel();
+    ShopingCartModel cart = new ShopingCartModel();
 
     cart.Item.Add(new ProductModel() { Name = "Iphone 16", price = 10.5M });
     cart.Item.Add(new ProductModel() { Name = "Laptop", price = 15.5M });
