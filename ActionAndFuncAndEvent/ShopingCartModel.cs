@@ -9,7 +9,7 @@
 
     public decimal Getfinalprice(Func<List<ProductModel>, decimal> Calculatprice,
         ComputeDiscountedPrice discountedPrice,
-        printDiscountValue printDiscountValue)
+        Action<decimal,decimal> printDiscountValue)
     {
         decimal totoal = Calculatprice(Item);
 
