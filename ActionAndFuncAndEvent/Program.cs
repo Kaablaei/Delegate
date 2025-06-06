@@ -8,8 +8,10 @@ normaluser.ShopingCart = fillShopingcart();
 goldenUser.ShopingCart = fillShopingcart();
 
 
-decimal normaluserprice = normaluser.ShopingCart.Getfinalprice();
-decimal goldenuserprice = goldenUser.ShopingCart.Getfinalprice();
+
+
+decimal normaluserprice = normaluser.ShopingCart.Getfinalprice(normaluser.GetDiscountedPrice);
+decimal goldenuserprice = goldenUser.ShopingCart.Getfinalprice(goldenUser.GetDiscountedPrice);
 
 
 Console.WriteLine($"normal User :{normaluserprice :C2}");
