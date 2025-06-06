@@ -8,10 +8,8 @@ normaluser.ShopingCart = fillShopingcart();
 goldenUser.ShopingCart = fillShopingcart();
 
 
-
-
-decimal normaluserprice = normaluser.ShopingCart.Getfinalprice(normaluser.GetDiscountedPrice);
-decimal goldenuserprice = goldenUser.ShopingCart.Getfinalprice(goldenUser.GetDiscountedPrice);
+decimal normaluserprice = normaluser.ShopingCart.Getfinalprice(ComputTotalPrice,normaluser.GetDiscountedPrice);
+decimal goldenuserprice = goldenUser.ShopingCart.Getfinalprice(ComputTotalPrice, goldenUser.GetDiscountedPrice);
 
 
 Console.WriteLine($"normal User :{normaluserprice :C2}");
@@ -19,6 +17,10 @@ Console.WriteLine();
 Console.WriteLine($"Golden User :{goldenuserprice:C2}");
 
 
+decimal ComputTotalPrice(List<ProductModel> model)
+{
+    return model.Sum(p=>p.price);
+}
 
 
 

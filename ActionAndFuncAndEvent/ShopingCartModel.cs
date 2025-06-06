@@ -5,13 +5,13 @@
 
     public delegate decimal ComputeDiscountedPrice(decimal price);
 
-    public decimal Getfinalprice(ComputeDiscountedPrice discountedPrice)
+    public decimal Getfinalprice(Func<List <ProductModel> ,decimal > Calculatprice,ComputeDiscountedPrice discountedPrice)
     {
-        decimal totoal = this.Item.Sum(p => p.price);
+        decimal totoal = Calculatprice(Item);
 
         return discountedPrice(totoal);
 
-        //return Item.Sum(p => p.price);
+
     }
 
 }
